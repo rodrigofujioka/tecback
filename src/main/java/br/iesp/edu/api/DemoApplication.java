@@ -1,4 +1,4 @@
-package com.example.demo;
+package br.iesp.edu.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
