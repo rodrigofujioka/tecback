@@ -11,7 +11,6 @@ import java.util.List;
 @RequestMapping("/pessoa")
 public class PessoaResource {
 
-
     private final PessoaService pessoaService;
 
     @Autowired
