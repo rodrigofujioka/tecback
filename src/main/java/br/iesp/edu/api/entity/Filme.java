@@ -6,18 +6,18 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Max;
 
+@Entity
 @Getter
 @Setter
-@Entity
-public class Pessoa {
+public class Filme {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
+    private String titulo;
+    private String genero;
+    private int ano;
 
-    private String nome;
-
-    private String email;
 }
