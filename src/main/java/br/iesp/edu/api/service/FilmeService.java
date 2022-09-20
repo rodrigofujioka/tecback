@@ -19,9 +19,18 @@ public class FilmeService {
         return filme;
     }
 
+
+    public void excluirPorID(Integer id){
+        repository.deleteById(id);
+    }
+
+    public List<Filme> listarFilmes(){
+        return repository.findAll();
+    }
+
     public Filme atualizar(Filme filme){
         if(filme.getId()==null){
-          throw new RuntimeException("id da conta nulo");
+            throw new RuntimeException("id da conta nulo");
         }
         filme = repository.save(filme);
         return filme;
@@ -32,15 +41,6 @@ public class FilmeService {
             throw new RuntimeException("id da conta nulo");
         }
         repository.delete(filme);
-    }
-
-
-    public void excluirPorID(Integer id){
-        repository.deleteById(id);
-    }
-
-    public List<Filme> listarFilmes(){
-        return repository.findAll();
     }
 
 }
