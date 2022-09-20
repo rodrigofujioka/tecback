@@ -29,7 +29,7 @@ public class FilmeService {
 
     public void excluir(Filme filme){
         if(filme.getId()==null){
-            throw new RuntimeException("ID Nulo");
+            throw new RuntimeException("id Nulo");
         }
         repository.delete(filme);
     }
