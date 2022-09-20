@@ -21,7 +21,7 @@ public class FilmeService {
 
     public Filme atualizar(Filme filme){
         if(filme.getId()==null){
-          throw new RuntimeException("ID Nulo");
+          throw new RuntimeException("id da conta nulo");
         }
         filme = repository.save(filme);
         return filme;
@@ -29,7 +29,7 @@ public class FilmeService {
 
     public void excluir(Filme filme){
         if(filme.getId()==null){
-            throw new RuntimeException("id Nulo");
+            throw new RuntimeException("id da conta nulo");
         }
         repository.delete(filme);
     }
