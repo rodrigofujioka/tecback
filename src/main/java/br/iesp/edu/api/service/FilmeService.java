@@ -29,7 +29,7 @@ public class FilmeService {
     }
 
     public Filme atualizar(Filme filme){
-        if(filme.getId()==null){
+        if(filme==null){
             throw new RuntimeException("id da conta nulo");
         }
         filme = repository.save(filme);
