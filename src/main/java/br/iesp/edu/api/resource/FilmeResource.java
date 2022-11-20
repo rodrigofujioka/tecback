@@ -35,7 +35,6 @@ public class FilmeResource {
 
     @GetMapping
     public List<Filme> listarFilme(){
-        service = null;
         return service.listarFilmes();
     }
 
