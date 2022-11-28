@@ -1,5 +1,6 @@
 package br.iesp.edu.api.entity;
 
+import br.iesp.edu.api.validators.StringValidatorConstraint;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,8 @@ public class Filme {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @StringValidatorConstraint
     private String titulo;
     private String genero;
     private int ano;
