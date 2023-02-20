@@ -1,10 +1,12 @@
 package br.iesp.edu.api.resource;
 
 import br.iesp.edu.api.entity.Pessoa;
+import br.iesp.edu.api.entity.PessoaDTO;
 import br.iesp.edu.api.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,8 +26,14 @@ public class PessoaResource {
     }
 
     @PostMapping
-    void addUser(@RequestBody Pessoa usuario) {
-        pessoaService.salvar(usuario);
+    void addUser(@RequestBody @Valid PessoaDTO pessoaDTO) {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setEmail(pessoaDTO.getEmail());
+        pessoa.setNome(pessoaDTO.getNome());
+        pessoa.setTeste(pessoaDTO.getTeste());
+
+
+        pessoaService.salvar(pessoa);
     }
 
 }
