@@ -10,13 +10,17 @@
 	</parent>
 	<groupId>br.com.fujideia.iesp</groupId>
 	<artifactId>tecback</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.20231-SNAPSHOT</version>
 	<name>tecback</name>
 	<description>Disciplina de Tecnologias de BackEnd 1</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jersey</artifactId>
