@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.fujideia.iesp</groupId>
 	<artifactId>tecback</artifactId>
-	<version>0.0.20231-SNAPSHOT</version>
+	<version>0.1.20231-SNAPSHOT</version>
 	<name>tecback</name>
 	<description>Disciplina de Tecnologias de BackEnd 1</description>
 	<properties>
@@ -31,6 +31,15 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
