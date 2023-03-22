@@ -13,7 +13,8 @@ import lombok.Setter;
 public class Filme {
 
     @Id
-    private int id;
+    @GeneratedValue
+    private Integer id;
 
 
     private String titulo;
