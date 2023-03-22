@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
+
 @Entity
 @Table(name="tb_filme")
 //para colocar um nome na tabela
@@ -26,7 +27,6 @@ public class Filme {
 
     @Transient
     private  String teste;
-
 
 
 }
