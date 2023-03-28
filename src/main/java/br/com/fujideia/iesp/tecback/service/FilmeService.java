@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -18,6 +19,15 @@ public class FilmeService {
 
     public Filme salvar(Filme filme){
         filme = repository.save(filme);
+        return filme;
+    }
+
+    public Filme alterar(Filme filme){
+        if(Objects.nonNull(filme.getId())){
+            filme = repository.save(filme);
+        }else{
+            throw new NotFoundException();
+        }
         return filme;
     }
 

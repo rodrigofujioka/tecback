@@ -24,13 +24,19 @@ public class FilmeController {
         return ResponseEntity.ok(filme);
     }
 
+    @PutMapping
+    public ResponseEntity<Filme> alterar(@RequestBody Filme filme){
+        filme = service.alterar(filme);
+        return ResponseEntity.ok(filme);
+    }
+
     @GetMapping
     public ResponseEntity<List<Filme>> listar(){
         return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Filme> listar(@PathVariable("id") Integer id){
+    public ResponseEntity<Filme> consultar(@PathVariable("id") Integer id){
         return ResponseEntity.ok(service.consultarPorId(id));
     }
 
