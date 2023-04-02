@@ -23,10 +23,7 @@ public class Filme {
     @Column(name= "ds_sinopse", length = 500)
     private String sinopse;
 
-    //@Transient- ignora para não ir para o banco
 
-    @Transient
-    private  String teste;
 
 
 }
