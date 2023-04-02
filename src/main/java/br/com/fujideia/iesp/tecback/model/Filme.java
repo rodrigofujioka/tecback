@@ -1,6 +1,7 @@
 package br.com.fujideia.iesp.tecback.model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,11 +18,17 @@ public class Filme {
     @GeneratedValue
     private Integer id;
 
-
+    @Column(nullable = false, length = 100)
     private String titulo;
 
-    @Column(name= "ds_sinopse", length = 500)
+    @Column(nullable = false, length = 500)
     private String sinopse;
+
+    @Column(nullable = false)
+    private Integer ano;
+
+    @Column(nullable = false)
+    private Integer duracao;
 
 
 

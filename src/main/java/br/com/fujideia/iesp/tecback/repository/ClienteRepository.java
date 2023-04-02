@@ -13,10 +13,10 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-    @Query("select titulo from tb_cliente order by titulo ASC")
+    @Query("select nome from tb_cliente order by nome ASC")
     public List<Cliente> listarOrdernadoPorNome();
     public List<Cliente> findAllByOrderByNomeAsc();
 
-    @Query("select titulo from tb_cliente a where titulo like %:nome% ")
+    @Query("select nome from tb_cliente a where nome like %:nome% ")
     public List<Cliente> buscarClientePorNomeLike(@Param("nome") String nome);
 }

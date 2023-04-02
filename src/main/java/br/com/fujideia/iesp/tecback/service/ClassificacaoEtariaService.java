@@ -18,7 +18,7 @@ public class ClassificacaoEtariaService {
         return classificacao_etaria;
     }
 
-    public List<Classificacao_Etaria> listarClassificacaoEtaria(){
+    public List<Classificacao_Etaria> listar(){
         return this.repository.findAll();
     }
 
@@ -26,8 +26,13 @@ public class ClassificacaoEtariaService {
         return this.repository.findById(id).orElseThrow();
     }
 
-    public void excluir(int id){
-        this.repository.deleteById(id);
+    public Boolean excluir(int id){
+        try {
+            repository.deleteById(id);
+        }catch (Exception e ){
+
+            return false;}
+        return true;
     }
 
     public Classificacao_Etaria alterar(Classificacao_Etaria classificacao_etaria){

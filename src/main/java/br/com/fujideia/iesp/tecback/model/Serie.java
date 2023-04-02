@@ -16,11 +16,18 @@ public class Serie {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @Column(nullable = false, length = 100)
     private String titulo;
 
-
-    @Column(name= "ds_sinopse", length = 500)
+    @Column(nullable = false, length = 500)
     private String sinopse;
+
+    @Column(nullable = false)
+    private Integer ano;
+
+    @Column(nullable = false)
+    private Integer duracao;
 
 
 }

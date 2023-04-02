@@ -4,8 +4,18 @@ package br.com.fujideia.iesp.tecback.repository;
 
 import br.com.fujideia.iesp.tecback.model.Plano;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface PlanoRepository extends JpaRepository<Plano, Integer> {
+    @Query("select descricao, valor from tb_plano order by valor ASC")
+    public List<Plano> listarOrdernadoPorNome();
+    public List<Plano> findAllByOrderByNomeAsc();
+
+    @Query("select descricao, valor from tb_plano a where id = id ")
+    public List<Plano> buscarPlanoPorIdLike(@Param("id") Integer id);
 }
