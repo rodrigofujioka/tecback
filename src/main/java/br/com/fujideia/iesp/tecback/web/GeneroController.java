@@ -1,7 +1,8 @@
 package br.com.fujideia.iesp.tecback.web;
 
-import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.service.FilmeService;
+
+import br.com.fujideia.iesp.tecback.model.Genero;
+import br.com.fujideia.iesp.tecback.service.GeneroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,34 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/filme")
-
-public class FilmeController {
+@RequestMapping("/genero")
+public class GeneroController {
 
     @Autowired
-    private FilmeService service;
+    private GeneroService service;
 
     @PostMapping
-    public ResponseEntity<Filme> salvar(Filme filme){
+    public ResponseEntity<Genero> salvar(Genero genero){
 
-        filme = service.salvar(filme);
-        return ResponseEntity.ok(filme);
+        genero = service.salvar(genero);
+        return ResponseEntity.ok(genero);
 
     }
 
     @PutMapping
-    public ResponseEntity<Filme> alterar(@RequestBody Filme filme){
-        filme = service.alterar(filme);
-        return ResponseEntity.ok(filme);
+    public ResponseEntity<Genero> alterar(@RequestBody Genero genero){
+        genero = service.alterar(genero);
+        return ResponseEntity.ok(genero);
     }
 
     @GetMapping
-    public ResponseEntity<List<Filme>> listar(){
+    public ResponseEntity<List<Genero>> listar(){
         return ResponseEntity.ok(service.listar());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Filme> consultar(@PathVariable("id") Integer id){
+    public ResponseEntity<Genero> consultar(@PathVariable("id") Integer id){
         return ResponseEntity.ok(service.consultarPorId(id));
     }
 
@@ -48,4 +48,5 @@ public class FilmeController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

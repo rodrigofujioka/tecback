@@ -1,9 +1,10 @@
 package br.com.fujideia.iesp.tecback.service;
 
-import br.com.fujideia.iesp.tecback.model.Cliente;
-import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
 
+import br.com.fujideia.iesp.tecback.model.Filme;
+import br.com.fujideia.iesp.tecback.model.Serie;
+import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
+import br.com.fujideia.iesp.tecback.repository.SerieRepository;
 import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,27 +12,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
-
-
-
 @Service
-public class FilmeService {
+public class SerieService {
+    @Autowired
+    private SerieRepository repository;
 
-    @Autowired //chama o construtor do spring
-    private FilmeRepository repository;
-
-    public Filme salvar(Filme filme){
-        filme = this.repository.save(filme);
-        return filme;
+    public Serie salvar(Serie serie){
+        serie = this.repository.save(serie);
+        return serie;
     }
 
-    public List<Filme> listar(){
+    public List<Serie> listar(){
         return repository.findAll();
     }
 
 
 
-    public Filme consultarPorId(int id){
+    public Serie consultarPorId(int id){
         return this.repository.findById(id).orElseThrow(NotFoundException::new);
     }
 
@@ -44,15 +41,13 @@ public class FilmeService {
         return true;
     }
 
-    public Filme alterar(Filme filme) {
-        if (Objects.isNull(filme.getId())) {
-            filme = repository.save(filme);
+    public Serie alterar(Serie serie) {
+        if (Objects.isNull(serie.getId())) {
+            serie = repository.save(serie);
         } else {
             throw new NotFoundException();
         }
-        return filme;
+        return serie;
 
     }
-
-
 }

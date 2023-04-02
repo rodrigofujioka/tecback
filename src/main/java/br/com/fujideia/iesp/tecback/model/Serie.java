@@ -1,7 +1,6 @@
 package br.com.fujideia.iesp.tecback.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +9,9 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="tb_filme")
+@Table(name="tb_serie")
 //para colocar um nome na tabela
-public class Filme {
+public class Serie {
 
     @Id
     @GeneratedValue
@@ -29,8 +28,6 @@ public class Filme {
 
     @Column(nullable = false)
     private Integer duracao;
-
-
 
 
 }

@@ -1,7 +1,6 @@
 package br.com.fujideia.iesp.tecback.model;
 
 import jakarta.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +9,9 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="tb_genero")
+@Table(name="tb_tipo_usuario")
 //para colocar um nome na tabela
-public class Genero {
+public class Tipo_Usuario {
 
     @Id
     @GeneratedValue

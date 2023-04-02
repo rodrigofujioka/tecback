@@ -1,36 +1,34 @@
 package br.com.fujideia.iesp.tecback.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UUID;
 
 @Getter
 @Setter
 
 
 @Entity
-@Table(name="tb_filme")
+@Table(name="tb_usuario")
 //para colocar um nome na tabela
-public class Filme {
+public class Usuario {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @Column(nullable = false, length = 100)
-    private String titulo;
-
-    @Column(nullable = false, length = 500)
-    private String sinopse;
+    @Column(nullable = false, length = 50)
+    private String nome_usuario;
 
     @Column(nullable = false)
-    private Integer ano;
+    private UUID senha;
 
     @Column(nullable = false)
-    private Integer duracao;
+    private Integer tipo_usuario;
 
-
+    @Column(nullable = false)
+    private Integer id_cliente;
 
 
 }
