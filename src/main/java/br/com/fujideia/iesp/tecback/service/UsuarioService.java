@@ -1,8 +1,8 @@
 package br.com.fujideia.iesp.tecback.service;
 
 
-import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
+import br.com.fujideia.iesp.tecback.model.Usuario;
+import br.com.fujideia.iesp.tecback.repository.UsuarioRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +13,25 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-public class FilmeService {
+public class UsuarioService {
     @Autowired
-    private FilmeRepository repository;
+    private UsuarioRepository repository;
 
-    public Filme salvar(Filme filme){
-        filme = repository.save(filme);
-        return filme;
+    public Usuario salvar(Usuario usuario){
+        usuario = repository.save(usuario);
+        return usuario;
     }
 
-    public Filme alterar(Filme filme){
-        if(Objects.nonNull(filme.getId())){
-            filme = repository.save(filme);
+    public Usuario alterar(Usuario usuario){
+        if(Objects.nonNull(usuario.getId())){
+            usuario = repository.save(usuario);
         }else{
             throw new NotFoundException();
         }
-        return filme;
+        return usuario;
     }
 
-    public List<Filme> listar(){
+    public List<Usuario> listar(){
         return repository.findAll();
     }
 
@@ -46,7 +46,7 @@ public class FilmeService {
         return true;
     }
 
-    public Filme consultarPorId(Integer id){
+    public Usuario consultarPorId(Integer id){
         return repository
                 .findById(id)
                 .orElseThrow(NotFoundException::new);
