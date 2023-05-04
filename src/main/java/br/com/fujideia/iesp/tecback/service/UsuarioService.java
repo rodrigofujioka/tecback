@@ -2,12 +2,15 @@ package br.com.fujideia.iesp.tecback.service;
 
 
 import br.com.fujideia.iesp.tecback.model.Usuario;
+import br.com.fujideia.iesp.tecback.model.dto.UsuarioDTO;
 import br.com.fujideia.iesp.tecback.repository.UsuarioRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,8 +34,21 @@ public class UsuarioService {
         return usuario;
     }
 
-    public List<Usuario> listar(){
-        return repository.findAll();
+    public List<UsuarioDTO> listar(){
+        List<UsuarioDTO>  listaDTO   =  new ArrayList<>();
+
+        for(Usuario usuario : repository.findAll()){
+            listaDTO.add(
+                    UsuarioDTO.builder()
+                    .nome(usuario.getNome())
+                    .email(usuario.getEmail())
+                    .idade(LocalDate.now().getYear() - usuario.getAnoNascimento())
+                    .build()
+            );
+        }
+
+
+        return listaDTO;
     }
 
     public Boolean excluir(Integer id){

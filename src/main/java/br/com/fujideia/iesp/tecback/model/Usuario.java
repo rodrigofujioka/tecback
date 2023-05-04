@@ -19,6 +19,15 @@ public class Usuario {
     @Column(unique = true)
     private String login;
 
+    private int anoNascimento;
+
+    private String nome;
+
+    private String sobrenome;
+    private String cpf;
+
+    private String email;
+
 
     @OneToMany
     private List<Favoritos> listaFavoritos;

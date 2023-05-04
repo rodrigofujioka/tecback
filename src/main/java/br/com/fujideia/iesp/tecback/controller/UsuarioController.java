@@ -1,6 +1,7 @@
 package br.com.fujideia.iesp.tecback.controller;
 
 import br.com.fujideia.iesp.tecback.model.Usuario;
+import br.com.fujideia.iesp.tecback.model.dto.UsuarioDTO;
 import br.com.fujideia.iesp.tecback.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listar(){
+    public ResponseEntity<List<UsuarioDTO>> listar(){
         return ResponseEntity.ok(service.listar());
     }
 
