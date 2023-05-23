@@ -1,27 +1,33 @@
 package br.com.fujideia.iesp.tecback.model.dto;
 
+import br.com.fujideia.iesp.tecback.model.Favoritos;
+import br.com.fujideia.iesp.tecback.validator.NomeValidation;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Builder;
-import lombok.Data;
+import java.util.List;
 
+
+@Getter
+@Setter
 @Builder
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsuarioDTO {
 
-    private int idade;
+    private int id;
+    private String login;
+
+
+    private Integer anoNascimento;
+
     private String nome;
-    @Email @NotEmpty
-    private String email;
 
+    @NomeValidation
     private String sobrenome;
-
-
+    private String cpf;
+    private String email;
 
 
 }

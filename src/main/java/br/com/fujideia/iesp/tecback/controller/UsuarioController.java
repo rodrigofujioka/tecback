@@ -2,9 +2,11 @@ package br.com.fujideia.iesp.tecback.controller;
 
 import br.com.fujideia.iesp.tecback.model.Usuario;
 import br.com.fujideia.iesp.tecback.model.dto.UsuarioDTO;
+import br.com.fujideia.iesp.tecback.model.dto.UsuarioNomeEmailDTO;
 import br.com.fujideia.iesp.tecback.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +19,9 @@ public class UsuarioController {
     private UsuarioService service;
 
     @PostMapping
-    public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario){
-        usuario = service.salvar(usuario);
-        return ResponseEntity.ok(usuario);
+    public ResponseEntity<UsuarioDTO> salvar(@RequestBody @Validated  UsuarioDTO usuarioDTO){
+        usuarioDTO = service.salvar(usuarioDTO);
+        return ResponseEntity.ok(usuarioDTO);
     }
 
     @PutMapping
@@ -29,7 +31,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> listar(){
+    public ResponseEntity<List<UsuarioNomeEmailDTO>> listar(){
         return ResponseEntity.ok(service.listar());
     }
 
