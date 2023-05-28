@@ -17,7 +17,7 @@ public class ClassificacaoEtariaController {
     private ClassificacaoEtariaService service;
 
     @PostMapping
-    public ResponseEntity<Classificacao_Etaria> salvar(Classificacao_Etaria classificacao_etaria){
+    public ResponseEntity<Classificacao_Etaria> salvar(@RequestBody Classificacao_Etaria classificacao_etaria){
 
         classificacao_etaria = service.salvar(classificacao_etaria);
         return ResponseEntity.ok(classificacao_etaria);

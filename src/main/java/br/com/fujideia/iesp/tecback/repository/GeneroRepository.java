@@ -11,10 +11,5 @@ import java.util.List;
 
 @Repository
 public interface GeneroRepository extends JpaRepository<Genero, Integer> {
-    @Query("select nome from tb_genero order by nome ASC")
-    public List<Genero> listarOrdernadoPorNome();
-    public List<Genero> findAllByOrderByNomeAsc();
 
-    @Query("select nome from tb_genero a where nome like %:nome% ")
-    public List<Genero> buscarGeneroPorNomeLike(@Param("nome") String nome);
 }

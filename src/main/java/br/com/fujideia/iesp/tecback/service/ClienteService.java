@@ -1,9 +1,11 @@
 package br.com.fujideia.iesp.tecback.service;
 
-import br.com.fujideia.iesp.tecback.model.Classificacao_Etaria;
+
+import br.com.fujideia.iesp.tecback.dtos.CadastroDto;
 import br.com.fujideia.iesp.tecback.model.Cliente;
-import br.com.fujideia.iesp.tecback.model.Filme;
 import br.com.fujideia.iesp.tecback.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,13 @@ public class ClienteService {
     @Autowired
     private ClienteRepository repository;
 
-    public Cliente salvar(Cliente cliente){
-        cliente = this.repository.save(cliente);
-        return cliente;
+    ModelMapper mapper = new ModelMapper();
+
+    @Transactional
+    public CadastroDto salvar(CadastroDto cadastroDto){
+        Cliente cliente = mapper.map(cadastroDto.getCliente(), Cliente.class);
+        cadastroDto = mapper.map(repository.save(cliente), CadastroDto.class);
+        return cadastroDto;
     }
 
     public List<Cliente> listar(){

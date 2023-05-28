@@ -1,12 +1,22 @@
 package br.com.fujideia.iesp.tecback.web;
 
+import br.com.fujideia.iesp.tecback.dtos.CadastroDto;
 import br.com.fujideia.iesp.tecback.model.Cliente;
-import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.service.ClienteService;
+import br.com.fujideia.iesp.tecback.model.Forma_Pagamento;
+import br.com.fujideia.iesp.tecback.model.Pagamento;
+import br.com.fujideia.iesp.tecback.model.Usuario;
+import br.com.fujideia.iesp.tecback.service.*;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -15,13 +25,34 @@ public class ClienteController {
 
     @Autowired
     private ClienteService service;
+    @Autowired
+    private FormaPagamentoService formaPagamentoService;
+    @Autowired
+    private PagamentoService pagamentoService;
+    @Autowired
+    private PlanoService planoService;
+    @Autowired
+    private UsuarioService usuarioService;
 
-    @PostMapping
-    public ResponseEntity<Cliente> salvar(Cliente cliente){
+    @PostMapping("cadastrar")
+    public ResponseEntity<CadastroDto> salvar(@RequestBody @Validated CadastroDto cadastroDto){
+        CadastroDto cliente = service.salvar(cadastroDto);
+        CadastroDto fp = formaPagamentoService.salvar(cadastroDto, cliente.getCliente().getId());
+        Usuario usuario = new Usuario();
+        Pagamento pagamento = new Pagamento();
+        Date date = new Date();
+        usuario.setNome_usuario(cliente.getCliente().getNome_cliente());
+        usuario.setId_cliente(cliente.getCliente().getId());
+        usuario.setSenha(cadastroDto.getSenha());
+        usuario.setEmail(cliente.getCliente().getEmail());
+        usuarioService.salvar(usuario);
+        pagamento.setId_cliente(cliente.getCliente().getId());
+        pagamento.setData_pagamento(date);
+        pagamento.setData_vencimento(date);
+        pagamento.setId_plano(cliente.getCliente().getId_plano());
+        pagamentoService.salvar(pagamento);
 
-        cliente = service.salvar(cliente);
-        return ResponseEntity.ok(cliente);
-
+        return ResponseEntity.ok(cadastroDto);
     }
 
     @PutMapping

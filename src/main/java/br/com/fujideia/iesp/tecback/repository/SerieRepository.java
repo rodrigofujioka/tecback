@@ -14,10 +14,5 @@ import java.util.List;
 @Repository
 public interface SerieRepository extends JpaRepository<Serie, Integer> {
 
-    @Query("select titulo from tb_serie order by titulo ASC")
-    public List<Serie> listarOrdernadoPorNome();
-    public List<Serie> findAllByOrderByNomeAsc();
 
-    @Query("select titulo from tb_serie a where titulo like %:nome% ")
-    public List<Serie> buscarSeriePorNomeLike(@Param("nome") String nome);
 }

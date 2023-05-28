@@ -12,10 +12,5 @@ import java.util.List;
 
 @Repository
 public interface PlanoRepository extends JpaRepository<Plano, Integer> {
-    @Query("select descricao, valor from tb_plano order by valor ASC")
-    public List<Plano> listarOrdernadoPorNome();
-    public List<Plano> findAllByOrderByNomeAsc();
 
-    @Query("select descricao, valor from tb_plano a where id = id ")
-    public List<Plano> buscarPlanoPorIdLike(@Param("id") Integer id);
 }

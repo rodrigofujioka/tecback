@@ -12,10 +12,5 @@ import java.util.List;
 
 @Repository
 public interface PagamentoRepository extends JpaRepository<Pagamento, Integer> {
-    @Query("select id_cliente, valor, data_pagamento, data_vencimento from tb_pagamento order by id_cliente ASC")
-    public List<Pagamento> listarOrdernadoPorNome();
-    public List<Pagamento> findAllByOrderByNomeAsc();
 
-    @Query("select id_cliente, valor, data_pagamento, data_vencimento from tb_pagamento a where id_cliente = id ")
-    public List<Pagamento> buscarPagamentoPorNomeLike(@Param("id") Integer id);
 }

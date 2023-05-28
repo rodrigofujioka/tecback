@@ -1,9 +1,11 @@
 package br.com.fujideia.iesp.tecback.service;
 
+import br.com.fujideia.iesp.tecback.dtos.CadastroDto;
+
 import br.com.fujideia.iesp.tecback.model.Forma_Pagamento;
-import br.com.fujideia.iesp.tecback.model.Serie;
 import br.com.fujideia.iesp.tecback.repository.FormaPagamentoRepository;
-import jakarta.ws.rs.NotFoundException;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,14 @@ public class FormaPagamentoService {
     @Autowired
     private FormaPagamentoRepository repository;
 
-    public Forma_Pagamento salvar(Forma_Pagamento forma_pagamento){
-        forma_pagamento = this.repository.save(forma_pagamento);
-        return forma_pagamento;
+    ModelMapper mapper = new ModelMapper();
+
+    @Transactional
+    public CadastroDto salvar(CadastroDto cadastroDto, Integer id_cliente){
+        Forma_Pagamento forma_pagamento = mapper.map(cadastroDto.getForma_pagamento(), Forma_Pagamento.class);
+        forma_pagamento.setId_cliente(id_cliente);
+        cadastroDto = mapper.map(repository.save(forma_pagamento), CadastroDto.class);
+        return cadastroDto;
     }
 
     public List<Forma_Pagamento> listar(){
@@ -28,7 +35,7 @@ public class FormaPagamentoService {
 
 
     public Forma_Pagamento consultarPorId(int id){
-        return this.repository.findById(id).orElseThrow(NotFoundException::new);
+        return this.repository.findById(id).orElseThrow();
     }
 
     public Boolean excluir(int id){
@@ -42,11 +49,8 @@ public class FormaPagamentoService {
 
     public Forma_Pagamento alterar(Forma_Pagamento forma_pagamento) {
         if (Objects.isNull(forma_pagamento.getId())) {
-            forma_pagamento = repository.save(forma_pagamento);
-        } else {
-            throw new NotFoundException();
+            throw new RuntimeException("ID não preenchido");
         }
-        return forma_pagamento;
-
+        return this.repository.save(forma_pagamento);
     }
 }

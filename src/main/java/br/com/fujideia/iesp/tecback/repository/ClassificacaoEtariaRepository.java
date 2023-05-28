@@ -13,10 +13,5 @@ import java.util.List;
 
 @Repository
 public interface ClassificacaoEtariaRepository extends JpaRepository<Classificacao_Etaria, Integer> {
-    @Query("select nome from tb_classificacao_etaria order by nome ASC")
-    public List<Classificacao_Etaria> listarOrdernadoPorNome();
-    public List<Classificacao_Etaria> findAllByOrderByNomeAsc();
 
-    @Query("select nome from tb_classificacao_etaria a where nome like %:nome% ")
-    public List<Classificacao_Etaria> buscarClassificacaoEtariaPorNomeLike(@Param("nome") String nome);
 }

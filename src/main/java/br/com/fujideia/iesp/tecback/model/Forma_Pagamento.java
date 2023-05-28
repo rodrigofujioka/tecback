@@ -1,6 +1,7 @@
 package br.com.fujideia.iesp.tecback.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,11 +15,14 @@ import lombok.Setter;
 public class Forma_Pagamento {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @Column(nullable = false, length = 30)
-    private String tipo;
-
+    @Column(nullable = false, unique = true)
+    private Integer numero_cartao;
+    @Column(nullable = false)
+    private Integer codigo_seguranca;
+    @Column(nullable = false)
+    private String titular_cartao;
+    private Integer id_cliente;
 
 }

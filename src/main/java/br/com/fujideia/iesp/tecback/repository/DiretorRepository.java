@@ -13,10 +13,5 @@ import java.util.List;
 @Repository
 public interface DiretorRepository extends JpaRepository<Diretor, Integer> {
 
-    @Query("select nome from tb_diretor order by nome ASC")
-    public List<Diretor> listarOrdernadoPorNome();
-    public List<Diretor> findAllByOrderByNomeAsc();
 
-    @Query("select nome from tb_diretor a where nome like %:nome% ")
-    public List<Diretor> buscarDiretorPorNomeLike(@Param("nome") String nome);
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Plano {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(nullable = false, length = 100)

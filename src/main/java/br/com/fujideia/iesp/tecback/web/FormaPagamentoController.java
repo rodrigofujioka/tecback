@@ -1,12 +1,20 @@
 package br.com.fujideia.iesp.tecback.web;
 
 
+import br.com.fujideia.iesp.tecback.dtos.CadastroDto;
+import br.com.fujideia.iesp.tecback.model.Cliente;
 import br.com.fujideia.iesp.tecback.model.Forma_Pagamento;
 import br.com.fujideia.iesp.tecback.service.FormaPagamentoService;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -17,11 +25,9 @@ public class FormaPagamentoController {
     private FormaPagamentoService service;
 
     @PostMapping
-    public ResponseEntity<Forma_Pagamento> salvar(Forma_Pagamento forma_pagamento){
-
-        forma_pagamento = service.salvar(forma_pagamento);
-        return ResponseEntity.ok(forma_pagamento);
-
+    public ResponseEntity<CadastroDto> salvar(@RequestBody @Validated CadastroDto cadastroDto){
+        cadastroDto = service.salvar(cadastroDto, 0);
+        return ResponseEntity.ok(cadastroDto);
     }
 
     @PutMapping

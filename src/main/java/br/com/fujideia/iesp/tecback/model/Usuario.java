@@ -5,9 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.UUID;
 
+import java.util.List;
+
 @Getter
 @Setter
-
 
 @Entity
 @Table(name="tb_usuario")
@@ -15,20 +16,20 @@ import org.hibernate.validator.constraints.UUID;
 public class Usuario {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(nullable = false, length = 50)
     private String nome_usuario;
 
     @Column(nullable = false)
-    private UUID senha;
+    private String senha;
 
     @Column(nullable = false)
-    private Integer tipo_usuario;
+    private int id_cliente;
 
     @Column(nullable = false)
-    private Integer id_cliente;
+    private String email;
 
 
 }

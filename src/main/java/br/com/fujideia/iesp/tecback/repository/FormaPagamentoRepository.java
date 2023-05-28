@@ -13,10 +13,5 @@ import java.util.List;
 @Repository
 public interface FormaPagamentoRepository extends JpaRepository<Forma_Pagamento, Integer> {
 
-    @Query("select tipo from tb_forma_pagamento order by tipo ASC")
-    public List<Forma_Pagamento> listarOrdernadoPorNome();
-    public List<Forma_Pagamento> findAllByOrderByNomeAsc();
 
-    @Query("select id from tb_forma_pagamento a where id = id ")
-    public List<Forma_Pagamento> buscarFormaPagamentoPorIdLike(@Param("id") Integer id);
 }

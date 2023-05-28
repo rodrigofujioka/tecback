@@ -16,29 +16,15 @@ import java.util.Date;
 public class Pagamento {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(nullable = false)
-    private Integer id_cliente;
-
-    @Column(nullable = false)
-    private Double valor;
-
-    @Column(nullable = false)
     private Date data_pagamento;
 
-    @Column(nullable = false)
     private Date data_vencimento;
 
-    @Column(nullable = false)
     private Integer id_plano;
 
-    @Column(nullable = false)
-    private Integer id_formapagamento;
-
-    @Column(nullable = false)
-    private Double saldo;
-
+    private Integer id_cliente;
 
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Classificacao_Etaria {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(nullable = false, length = 50)

@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Serie {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(nullable = false, length = 100)
@@ -27,7 +27,16 @@ public class Serie {
     private Integer ano;
 
     @Column(nullable = false)
-    private Integer duracao;
+    private Double duracao;
+
+    private Integer id_genero;
+
+    private Integer id_produtora;
+
+    private Integer id_diretor;
+
+    private Integer id_classificacao_etaria;
+
 
 
 }

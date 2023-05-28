@@ -16,8 +16,8 @@ public class PlanoController {
     @Autowired
     private PlanoService service;
 
-    @PostMapping
-    public ResponseEntity<Plano> salvar(Plano plano){
+    @PostMapping("/post")
+    public ResponseEntity<Plano> salvar(@RequestBody Plano plano){
 
         plano = service.salvar(plano);
         return ResponseEntity.ok(plano);
