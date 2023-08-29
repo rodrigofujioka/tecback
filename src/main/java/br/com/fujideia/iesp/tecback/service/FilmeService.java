@@ -52,9 +52,4 @@ public class FilmeService {
                 .orElseThrow(NotFoundException::new);
     }
 
-
-    public List<Filme> listarFilmePorTitulo(String titulo){
-        return repository.findFilmeByTitulo(titulo);
-    }
-
 }
