@@ -9,13 +9,15 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table
-public class Genero implements Serializable {
+@Table(name = "tb_episodio")
+public class Episodio implements Serializable {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    private String nome;
-
+    private String titulo;
+    private Integer numero;
+    @ManyToOne
+    private Serie serie;
 }

@@ -9,13 +9,14 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table
-public class Genero implements Serializable {
+@Table(name = "tb_serie")
+public class Serie implements Serializable {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    private String nome;
-
+    private String titulo;
+    @Column(name = "ds_sinopse", length = 500)
+    private String sinopse;
 }
