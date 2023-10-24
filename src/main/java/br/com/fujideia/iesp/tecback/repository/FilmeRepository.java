@@ -12,4 +12,9 @@ import java.util.List;
 @Repository
 public interface FilmeRepository extends JpaRepository<Filme,Integer> {
 
+    List<Filme> findFilmeByTitulo(String titulo);
+
+    @Query("select f From Filme f where f.titulo =:titulo")
+    List<Filme> listarFilmesPorTitulo(String titulo);
+
 }
