@@ -18,6 +18,9 @@ public class Filme implements Serializable {
     private String titulo;
     @Column(name = "ds_sinopse", length = 500)
     private String sinopse;
+
+    private Integer ano;
+
     @ManyToOne
     private Genero genero;
 }
