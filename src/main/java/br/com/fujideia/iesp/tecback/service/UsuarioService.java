@@ -12,6 +12,7 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repository;
+
     public Usuario salvar(Usuario usuario){
         return repository.save(usuario);
     }

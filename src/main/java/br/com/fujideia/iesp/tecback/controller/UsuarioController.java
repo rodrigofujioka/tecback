@@ -15,6 +15,8 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
+    ViaCepClient client;
+    @Autowired
     private UsuarioService service;
 
     @PostMapping
@@ -31,6 +33,12 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> consultarPorId(@PathVariable int id){
         return ResponseEntity.ok(service.consultarPorId(id));
+    }
+
+
+    @GetMapping("consulta/cep/{cep}")
+    public String teste(@PathVariable String cep){
+        return client.consultaCep(cep);
     }
 
 
