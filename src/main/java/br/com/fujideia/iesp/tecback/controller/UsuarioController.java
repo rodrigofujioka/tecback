@@ -1,7 +1,6 @@
 package br.com.fujideia.iesp.tecback.controller;
 
 
-import br.com.fujideia.iesp.tecback.model.Filme;
 import br.com.fujideia.iesp.tecback.model.Usuario;
 import br.com.fujideia.iesp.tecback.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
