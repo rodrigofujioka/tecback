@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 public class Filme {
     @Id
-    private int id;
+    private Integer id;
     private String titulo;
     private String descricao;
 }
