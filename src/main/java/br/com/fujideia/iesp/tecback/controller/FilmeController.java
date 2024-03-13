@@ -1,23 +1,42 @@
 package br.com.fujideia.iesp.tecback.controller;
 
 import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
+import br.com.fujideia.iesp.tecback.service.FilmeService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping("/filme")
 public class FilmeController {
 
-    private FilmeRepository repository;
+    private FilmeService service;
 
     @PostMapping
     public Filme salvar(@RequestBody Filme filme){
-        return repository.save(filme);
+        return service.salvar(filme);
+    }
+
+    @PutMapping
+    public Filme atualizar(@RequestBody Filme filme){
+        return service.atualizar(filme);
+    }
+
+    @GetMapping
+    public List<Filme> listarTodos(){
+        return service.listarTodos();
+    }
+
+    @GetMapping("/{id}")
+    public Filme buscarPorId(@PathVariable Integer id){
+        return service.buscarPorId(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluirPorId(@PathVariable Integer id){
+        service.excluir(id);
     }
 
 }
