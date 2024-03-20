@@ -1,5 +1,5 @@
 Este é o repositório do projeto final da disciplina BackEnd. Neste projeto, desenvolvemos uma API para um sistema de gestão de filmes.
-## Integrantes do Grupo
+## Integrantes do Grupo 
  
 - Andressa Macedo (andressa.vih2@gmail.com)
 - Edgar Neto (edgarneto789@gmail.com)
