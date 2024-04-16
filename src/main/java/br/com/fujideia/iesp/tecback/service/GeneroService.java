@@ -1,6 +1,5 @@
 package br.com.fujideia.iesp.tecback.service;
 
-import br.com.fujideia.iesp.tecback.model.Filme;
 import br.com.fujideia.iesp.tecback.model.Genero;
 import br.com.fujideia.iesp.tecback.repository.GeneroRepository;
 import lombok.AllArgsConstructor;
@@ -10,25 +9,29 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class GeneroService {
-    @Autowired
-    private GeneroRepository generoRepository;
 
-    public Genero salvar(Genero genero) { return generoRepository.save(genero); }
+    private GeneroRepository repository;
+
+    public Genero salvar(Genero genero) { return repository.save(genero); }
 
     public List<Genero> listarTodos(){
-        return generoRepository.findAll();
+        return repository.findAll();
     }
 
     public Genero atualizar(Genero genero){
         if(genero.getId()==null){
             throw new RuntimeException("Genero sem ID");
         }
-        return generoRepository.save(genero);
+        return repository.save(genero);
     }
 
-    //public Filme buscarPorId(Integer id){return generoRepository.findById(id).get();}
+    public Genero buscarPorId(Integer id){
+        return repository.findById(id).get();
+    }
 
-   // public void excluir(Integer id){GeneroRepository.deleteById(id);}
+    public void excluir(Integer id){
+        repository.deleteById(id);
+    }
 
     // Implemente métodos CRUD conforme necessário
 }

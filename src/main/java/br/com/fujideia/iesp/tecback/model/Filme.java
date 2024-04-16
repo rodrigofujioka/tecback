@@ -13,7 +13,8 @@ public class Filme {
     private Integer id;
     private String titulo;
     private String descricao;
+    private Long anolancado;
     @ManyToOne
-    @JoinColumn(name = "genero_id", nullable = true)
+    @JoinColumn(name = "genero_id", nullable = false)
     private Genero genero;
 }
