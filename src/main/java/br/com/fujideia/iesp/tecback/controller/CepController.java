@@ -1,6 +1,7 @@
 package br.com.fujideia.iesp.tecback.controller;
 
 import br.com.fujideia.iesp.tecback.clients.ViaCepClient;
+import br.com.fujideia.iesp.tecback.model.Endereco;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class CepController {
     private ViaCepClient viaCepClient;
 
     @GetMapping("/{cep}")
-    public String consultaCep(@PathVariable String cep){
+    public Endereco consultaCep(@PathVariable String cep){
         return viaCepClient.consultaEndereco(cep);
     }
 }
