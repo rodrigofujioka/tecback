@@ -11,6 +11,14 @@ import java.util.List;
 public interface FilmeRepository extends JpaRepository<Filme, Integer> {
 
     List<Filme> findByTitulo(String titulo);
+    List<Filme> findByTituloOrderByTituloAsc(String titulo);
+
     @Query("select f from Filme f where f.titulo=:titulo")
     List<Filme> buscarFilmePorTitulo(@Param("titulo") String titulo);
+
+    @Query("select f from Filme f " +
+            "where f.titulo=:titulo " +
+            "order by f.titulo asc ")
+    List<Filme>
+    buscarFilmePorTituloOrdenado(@Param("titulo") String titulo);
 }
