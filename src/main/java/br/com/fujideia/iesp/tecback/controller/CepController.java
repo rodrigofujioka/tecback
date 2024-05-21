@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cep")
 public class CepController {
 
-    @Autowired
     private ViaCepClient viaCepClient;
 
     @GetMapping("/{cep}")

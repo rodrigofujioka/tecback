@@ -1,7 +1,6 @@
 package br.com.fujideia.iesp.tecback.repository;
 
 import br.com.fujideia.iesp.tecback.model.Filme;
-import org.hibernate.annotations.Parameter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
