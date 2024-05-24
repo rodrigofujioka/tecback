@@ -1,9 +1,7 @@
 package br.com.fujideia.iesp.tecback.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import br.com.fujideia.iesp.tecback.validator.IdadeRange;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +14,9 @@ public class Filme {
     private Integer id;
     private String titulo;
     private String descricao;
+    @IdadeRange(min = 7, max = 23)
+    private Integer idade;
+
+    @Transient
+    private Integer anoLancamento;
 }
