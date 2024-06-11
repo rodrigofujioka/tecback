@@ -24,4 +24,5 @@ public class UsuarioController {
         Usuario novoUsuario = usuarioService.cadastrarUsuario(usuario);
         return  ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
     }
+
 }
