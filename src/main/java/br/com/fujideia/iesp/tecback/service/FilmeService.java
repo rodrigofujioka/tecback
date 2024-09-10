@@ -63,23 +63,39 @@ public class FilmeService {
                 filme.getId(),
                 filme.getTitulo(),
                 filme.getAnoLancamento(),
-                new DiretorDTO(filme.getDiretor().getId(), filme.getDiretor().getNome()),
-                filme.getAtores().stream().map(ator -> new AtorDTO(ator.getId(), ator.getNome())).collect(Collectors.toList()),
-                filme.getGeneros().stream().map(genero -> new GeneroDTO(genero.getId(), genero.getDescricao())).collect(Collectors.toList())
+                filme.getDiretor() != null ? new DiretorDTO(filme.getDiretor().getId(), filme.getDiretor().getNome()) : null,
+                filme.getAtores()
+                        .stream()
+                        .map(ator -> new AtorDTO(ator.getId(), ator.getNome()))
+                        .collect(Collectors.toList()),
+                filme.getGeneros()
+                        .stream()
+                        .map(genero -> new GeneroDTO(genero.getId(), genero.getNome()))
+                        .collect(Collectors.toList())
         );
     }
+
 
     private Filme convertToEntity(FilmeDTO filmeDTO) {
         Filme filme = new Filme();
         filme.setTitulo(filmeDTO.getTitulo());
         filme.setAnoLancamento(filmeDTO.getAnoLancamento());
         filme.setDiretor(convertToEntity(filmeDTO.getDiretor()));
-        filme.setAtores(filmeDTO.getAtores().stream().map(this::convertToEntity).collect(Collectors.toList()));
-        filme.setGeneros(filmeDTO.getGeneros().stream().map(this::convertToEntity).collect(Collectors.toList()));
+        filme.setAtores(filmeDTO.getAtores()
+                .stream()
+                .map(this::convertToEntity)
+                .collect(Collectors.toList()));
+        filme.setGeneros(filmeDTO.getGeneros()
+                .stream()
+                .map(this::convertToEntity)
+                .collect(Collectors.toList()));
         return filme;
     }
 
     private Diretor convertToEntity(DiretorDTO diretorDTO) {
+        if (diretorDTO == null) {
+            return null; // Retorne null caso não haja Diretor
+        }
         Diretor diretor = new Diretor();
         diretor.setId(diretorDTO.getId());
         diretor.setNome(diretorDTO.getNome());
@@ -96,7 +112,7 @@ public class FilmeService {
     private Genero convertToEntity(GeneroDTO generoDTO) {
         Genero genero = new Genero();
         genero.setId(generoDTO.getId());
-        genero.setDescricao(generoDTO.getDescricao());
+        genero.setNome(generoDTO.getDescricao());
         return genero;
     }
 }

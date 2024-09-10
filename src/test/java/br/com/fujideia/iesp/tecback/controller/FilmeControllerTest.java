@@ -1,6 +1,7 @@
 package br.com.fujideia.iesp.tecback.controller;
 
 import br.com.fujideia.iesp.tecback.model.Filme;
+import br.com.fujideia.iesp.tecback.model.dto.FilmeDTO;
 import br.com.fujideia.iesp.tecback.service.FilmeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,13 +34,13 @@ class FilmeControllerTest {
 
     @Test
     void ShouldListarTodosTest() {
-        Filme filme1 = new Filme();
-        Filme filme2 = new Filme();
-        List<Filme> filmes = Arrays.asList(filme1, filme2);
+        FilmeDTO filmeDTO1 = new FilmeDTO();
+        FilmeDTO filmeDTO2 = new FilmeDTO();
+        List<FilmeDTO> filmes = Arrays.asList(filmeDTO1, filmeDTO2);
 
         when(filmeService.listarTodos()).thenReturn(filmes);
 
-        ResponseEntity<List<Filme>> response = filmeController.listarTodos();
+        ResponseEntity<List<FilmeDTO>> response = filmeController.listarTodos();
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(2, response.getBody().size());
@@ -48,13 +49,13 @@ class FilmeControllerTest {
 
     @Test
     void ShouldBuscarPorIdTest_Found() {
-        Filme filme = new Filme();
-        when(filmeService.buscarPorId(1L)).thenReturn(Optional.of(filme));
+        FilmeDTO filmeDTO = new FilmeDTO();
+        when(filmeService.buscarPorId(1L)).thenReturn(Optional.of(filmeDTO));
 
-        ResponseEntity<Filme> response = filmeController.buscarPorId(1L);
+        ResponseEntity<FilmeDTO> response = filmeController.buscarPorId(1L);
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(filme, response.getBody());
+        assertEquals(filmeDTO, response.getBody());
         verify(filmeService, times(1)).buscarPorId(1L);
     }
 
@@ -62,7 +63,7 @@ class FilmeControllerTest {
     void ShouldBuscarPorIdTest_NotFound() {
         when(filmeService.buscarPorId(1L)).thenReturn(Optional.empty());
 
-        ResponseEntity<Filme> response = filmeController.buscarPorId(1L);
+        ResponseEntity<FilmeDTO> response = filmeController.buscarPorId(1L);
         assertNotNull(response);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         verify(filmeService, times(1)).buscarPorId(1L);
@@ -70,38 +71,38 @@ class FilmeControllerTest {
 
     @Test
     void ShouldCriarFilmeTest() {
-        Filme filme = new Filme();
-        when(filmeService.criarFilme(filme)).thenReturn(filme);
+        FilmeDTO filmeDTO = new FilmeDTO();
+        when(filmeService.criarFilme(filmeDTO)).thenReturn(filmeDTO);
 
-        ResponseEntity<Filme> response = filmeController.criarFilme(filme);
+        ResponseEntity<FilmeDTO> response = filmeController.criarFilme(filmeDTO);
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(filme, response.getBody());
-        verify(filmeService, times(1)).criarFilme(filme);
+        assertEquals(filmeDTO, response.getBody());
+        verify(filmeService, times(1)).criarFilme(filmeDTO);
     }
 
     @Test
     void ShouldAtualizarFilmeTest_Found() {
-        Filme filmeDetalhes = new Filme();
-        Filme filmeAtualizado = new Filme();
-        when(filmeService.atualizarFilme(1L, filmeDetalhes)).thenReturn(Optional.of(filmeAtualizado));
+        FilmeDTO filmeDetalhesDTO = new FilmeDTO();
+        FilmeDTO filmeAtualizadoDTO = new FilmeDTO();
+        when(filmeService.atualizarFilme(1L, filmeDetalhesDTO)).thenReturn(Optional.of(filmeAtualizadoDTO));
 
-        ResponseEntity<Filme> response = filmeController.atualizarFilme(1L, filmeDetalhes);
+        ResponseEntity<FilmeDTO> response = filmeController.atualizarFilme(1L, filmeDetalhesDTO);
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(filmeAtualizado, response.getBody());
-        verify(filmeService, times(1)).atualizarFilme(1L, filmeDetalhes);
+        assertEquals(filmeAtualizadoDTO, response.getBody());
+        verify(filmeService, times(1)).atualizarFilme(1L, filmeDetalhesDTO);
     }
 
     @Test
     void ShouldAtualizarFilmeTest_NotFound() {
-        Filme filmeDetalhes = new Filme();
-        when(filmeService.atualizarFilme(1L, filmeDetalhes)).thenReturn(Optional.empty());
+        FilmeDTO filmeDetalhesDTO = new FilmeDTO();
+        when(filmeService.atualizarFilme(1L, filmeDetalhesDTO)).thenReturn(Optional.empty());
 
-        ResponseEntity<Filme> response = filmeController.atualizarFilme(1L, filmeDetalhes);
+        ResponseEntity<FilmeDTO> response = filmeController.atualizarFilme(1L, filmeDetalhesDTO);
         assertNotNull(response);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(filmeService, times(1)).atualizarFilme(1L, filmeDetalhes);
+        verify(filmeService, times(1)).atualizarFilme(1L, filmeDetalhesDTO);
     }
 
     @Test

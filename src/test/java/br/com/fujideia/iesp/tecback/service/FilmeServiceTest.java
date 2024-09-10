@@ -1,9 +1,11 @@
 package br.com.fujideia.iesp.tecback.service;
 
+
 import br.com.fujideia.iesp.tecback.model.Filme;
 import br.com.fujideia.iesp.tecback.model.Diretor;
 import br.com.fujideia.iesp.tecback.model.Ator;
 import br.com.fujideia.iesp.tecback.model.Genero;
+import br.com.fujideia.iesp.tecback.model.dto.FilmeDTO;
 import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,14 +34,14 @@ class FilmeServiceTest {
     }
 
     @Test
-    void shouldListarTodosOsFilmesJavalorianos() {
+    void shouldListarTodosOsFilmes() {
         Filme filme1 = new Filme();
         Filme filme2 = new Filme();
         List<Filme> filmes = Arrays.asList(filme1, filme2);
 
         when(filmeRepository.findAll()).thenReturn(filmes);
 
-        List<Filme> result = filmeService.listarTodos();
+        List<FilmeDTO> result = filmeService.listarTodos();
         assertEquals(2, result.size());
         verify(filmeRepository, times(1)).findAll();
     }
@@ -47,6 +49,7 @@ class FilmeServiceTest {
     @Test
     void shouldBuscarFilmePorIdQuandoExistente() {
         Filme filme = new Filme();
+        filme.setId(1L);
         filme.setTitulo("Javaloriano: A Ameaça do Código");
         filme.setAnoLancamento(2022);
         filme.setDiretor(new Diretor());
@@ -55,7 +58,7 @@ class FilmeServiceTest {
 
         when(filmeRepository.findById(1L)).thenReturn(Optional.of(filme));
 
-        Optional<Filme> result = filmeService.buscarPorId(1L);
+        Optional<FilmeDTO> result = filmeService.buscarPorId(1L);
         assertTrue(result.isPresent());
         assertEquals("Javaloriano: A Ameaça do Código", result.get().getTitulo());
         assertEquals(2022, result.get().getAnoLancamento());
@@ -66,49 +69,58 @@ class FilmeServiceTest {
     void shouldRetornarVazioAoBuscarFilmePorIdInexistente() {
         when(filmeRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Optional<Filme> result = filmeService.buscarPorId(1L);
+        Optional<FilmeDTO> result = filmeService.buscarPorId(1L);
         assertFalse(result.isPresent());
         verify(filmeRepository, times(1)).findById(1L);
     }
 
     @Test
-    void shouldCriarNovoFilmeJavaloriano() {
+    void shouldCriarNovoFilme() {
+        FilmeDTO filmeDTO = new FilmeDTO();
+        filmeDTO.setTitulo("O Império Contra Java");
+
         Filme filme = new Filme();
         filme.setTitulo("O Império Contra Java");
 
-        when(filmeRepository.save(filme)).thenReturn(filme);
+        when(filmeRepository.save(any(Filme.class))).thenReturn(filme);
 
-        Filme result = filmeService.criarFilme(filme);
+        FilmeDTO result = filmeService.criarFilme(filmeDTO);
         assertNotNull(result);
         assertEquals("O Império Contra Java", result.getTitulo());
-        verify(filmeRepository, times(1)).save(filme);
+        verify(filmeRepository, times(1)).save(any(Filme.class));
     }
 
     @Test
     void shouldAtualizarFilmeQuandoExistente() {
-        Filme filme = new Filme();
-        filme.setTitulo("Javaloriano: A Nova Esperança");
-        Filme filmeDetalhes = new Filme();
-        filmeDetalhes.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
+        FilmeDTO filmeDTO = new FilmeDTO();
+        filmeDTO.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
 
-        when(filmeRepository.findById(1L)).thenReturn(Optional.of(filme));
-        when(filmeRepository.save(filme)).thenReturn(filme);
+        Filme filmeExistente = new Filme();
+        filmeExistente.setId(1L);
+        filmeExistente.setTitulo("Javaloriano: A Nova Esperança");
 
-        Optional<Filme> result = filmeService.atualizarFilme(1L, filmeDetalhes);
+        Filme filmeAtualizado = new Filme();
+        filmeAtualizado.setId(1L);
+        filmeAtualizado.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
+
+        when(filmeRepository.findById(1L)).thenReturn(Optional.of(filmeExistente));
+        when(filmeRepository.save(any(Filme.class))).thenReturn(filmeAtualizado);
+
+        Optional<FilmeDTO> result = filmeService.atualizarFilme(1L, filmeDTO);
         assertTrue(result.isPresent());
         assertEquals("Javaloriano: O Retorno dos Jedi de Java", result.get().getTitulo());
         verify(filmeRepository, times(1)).findById(1L);
-        verify(filmeRepository, times(1)).save(filme);
+        verify(filmeRepository, times(1)).save(any(Filme.class));
     }
 
     @Test
     void shouldNaoAtualizarFilmeInexistente() {
-        Filme filmeDetalhes = new Filme();
-        filmeDetalhes.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
+        FilmeDTO filmeDTO = new FilmeDTO();
+        filmeDTO.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
 
         when(filmeRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Optional<Filme> result = filmeService.atualizarFilme(1L, filmeDetalhes);
+        Optional<FilmeDTO> result = filmeService.atualizarFilme(1L, filmeDTO);
         assertFalse(result.isPresent());
         verify(filmeRepository, times(1)).findById(1L);
     }
