@@ -66,7 +66,7 @@ public class FilmeService {
                 filme.getDiretor() != null ? new DiretorDTO(filme.getDiretor().getId(), filme.getDiretor().getNome()) : null,
                 filme.getAtores()
                         .stream()
-                        .map(ator -> new AtorDTO(ator.getId(), ator.getNome()))
+                        .map(ator -> new AtorDTO())
                         .collect(Collectors.toList()),
                 filme.getGeneros()
                         .stream()
