@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 public class Filme {
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 import br.com.fujideia.iesp.tecback.model.Ator;
 import br.com.fujideia.iesp.tecback.model.Diretor;
 import br.com.fujideia.iesp.tecback.model.Genero;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,4 @@ public class FilmeDTO {
     private DiretorDTO diretor;
     private List<AtorDTO> atores;
     private List<GeneroDTO> generos;
-
 }
