@@ -16,4 +16,7 @@ public interface FilmeRepository extends JpaRepository<Filme, Long> {
 
     @Query("SELECT f FROM Filme f WHERE f.anoLancamento = :ano")
     List<Filme> buscarPorAno(@Param("ano") int ano);
+
+    @Query("SELECT f FROM Filme f WHERE f.anoLancamento = :ano")
+    List<Filme> listarFilmesPorAno(@Param("ano") int ano);
 }

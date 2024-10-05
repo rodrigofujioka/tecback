@@ -1,5 +1,10 @@
-# Pós graduação em desenvolvimento web
-Código base da disciplina de fundamentos de programação web para disciplinas de pós graduação.
+# Projeto API Rest - Equipe
+
+## Detalhamento do Time
+
+Este projeto foi desenvolvido por **Hallan Pedrosa Ferreira** que foi o responsável pela implementação do CRUD de **Ator**, **Diretor**, **Filme** e **Gênero**, sendo responsável por implementar, também, os métodos de **GET, POST, PUT e DELETE** para todas as entidades, além de implementar os Services, Repositories e Models, anotados com @Entity.
+
+### Detalhamento das Contribuições:
 Contém conteúdo básico com fundamentos de programação Java web utilizando REST com Maven, JDK11, JDK 17 , SpringBoot , SpringData
 
 [![License](https://img.shields.io/github/license/rodrigofujioka/tecback.svg)](https://opensource.org/licenses/MIT)

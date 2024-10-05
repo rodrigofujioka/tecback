@@ -112,7 +112,7 @@ public class FilmeService {
     private Genero convertToEntity(GeneroDTO generoDTO) {
         Genero genero = new Genero();
         genero.setId(generoDTO.getId());
-        genero.setNome(generoDTO.getDescricao());
+        genero.setNome(generoDTO.getNome());
         return genero;
     }
 }
