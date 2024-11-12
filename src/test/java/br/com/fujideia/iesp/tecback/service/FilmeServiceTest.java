@@ -5,7 +5,9 @@ import br.com.fujideia.iesp.tecback.model.Filme;
 import br.com.fujideia.iesp.tecback.model.Diretor;
 import br.com.fujideia.iesp.tecback.model.Ator;
 import br.com.fujideia.iesp.tecback.model.Genero;
+import br.com.fujideia.iesp.tecback.model.dto.AtorDTO;
 import br.com.fujideia.iesp.tecback.model.dto.FilmeDTO;
+import br.com.fujideia.iesp.tecback.model.dto.GeneroDTO;
 import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,6 +98,17 @@ class FilmeServiceTest {
         FilmeDTO filmeDTO = new FilmeDTO();
         filmeDTO.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
 
+        AtorDTO atorDTO = new AtorDTO();
+        atorDTO.setId(1l);
+        atorDTO.setNome("Fujiraya");
+        filmeDTO.setAtores(List.of(atorDTO));
+
+        GeneroDTO generoDTO = new GeneroDTO();
+        generoDTO.setDescricao("Fujenero");
+        generoDTO.setId(1l);
+        filmeDTO.setGeneros(List.of(generoDTO));
+
+
         Filme filmeExistente = new Filme();
         filmeExistente.setId(1L);
         filmeExistente.setTitulo("Javaloriano: A Nova Esperança");
@@ -102,6 +116,21 @@ class FilmeServiceTest {
         Filme filmeAtualizado = new Filme();
         filmeAtualizado.setId(1L);
         filmeAtualizado.setTitulo("Javaloriano: O Retorno dos Jedi de Java");
+
+        Ator ator = new Ator();
+        ator.setId(1l);
+        ator.setNome("Fujiraya");
+        filmeAtualizado.setAtores(List.of(ator));
+
+        Genero genero = new Genero();
+        genero.setNome("Fujenero");
+        genero.setId(1l);
+        filmeAtualizado.setGeneros(List.of(genero));
+
+
+        filmeAtualizado.setAtores(Collections.emptyList());
+        filmeAtualizado.setGeneros(Collections.emptyList());
+
 
         when(filmeRepository.findById(1L)).thenReturn(Optional.of(filmeExistente));
         when(filmeRepository.save(any(Filme.class))).thenReturn(filmeAtualizado);
