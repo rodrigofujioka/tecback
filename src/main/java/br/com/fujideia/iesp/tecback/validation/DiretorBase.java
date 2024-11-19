@@ -1,4 +1,4 @@
-package br.com.fujideia.iesp.tecback.validators;
+package br.com.fujideia.iesp.tecback.validation;
 
 import java.util.Arrays;
 import java.util.List;
