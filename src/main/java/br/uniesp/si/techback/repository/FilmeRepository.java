@@ -36,6 +36,15 @@ public interface FilmeRepository extends JpaRepository<Filme, Integer> {
     @Query("SELECT f FROM Filme f WHERE LOWER(f.titulo) LIKE LOWER(CONCAT('%', :titulo, '%'))")
     List<Filme> buscarFilmesComTituloContendo(@Param("titulo") String titulo);
 
+    /**
+     * Todos os métodos acima usam @Query com JPQL.
+     *
+     * LOWER + LIKE simula a busca case-insensitive.
+     *
+     * CONCAT('%', :param, '%') simula o LIKE %valor% usado nas queries derivadas.
+     *
+     * Os nomes dos métodos podem ser livres, já que com @Query o que vale é a string da query.
+     */
 
 
 }
