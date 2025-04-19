@@ -2,6 +2,7 @@
 
 * "*" Sem projetos entregues
 * 0,1 = Entraga de projetos zipados.
+* Notas 11 considere que será lançado 10 no sistema ;) e parabéns aos colegas por irem além do que foi pedido. 
 
 | ID  | RA             | Projeto | Prova | N1   |
 |-----|----------------|---------|-------|------|
