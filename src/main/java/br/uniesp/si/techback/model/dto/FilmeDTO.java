@@ -1,4 +1,4 @@
-package br.uniesp.si.techback.dto;
+package br.uniesp.si.techback.model.dto;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
