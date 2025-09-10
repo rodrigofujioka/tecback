@@ -1,37 +1,65 @@
 package br.uniesp.si.techback.controller;
 
 import br.uniesp.si.techback.model.Filme;
+import br.uniesp.si.techback.service.FilmeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.ArrayList;
+import java.net.URI;
 import java.util.List;
 
-@Slf4j
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/filmes")
+@RequiredArgsConstructor
 public class FilmeController {
 
-    private List<Filme> lista = new ArrayList<>();
-    private long contador = 1;
-
-    @PostMapping
-    public Filme incluir(@RequestBody Filme filme){
-
-        filme.setId(contador);
-        ++contador;
-        lista.add(filme);
-        return filme;
-
-    }
+    private final FilmeService filmeService;
 
     @GetMapping
-    public List<Filme> listar(){
-        return lista;
+    public List<Filme> listar() {
+        return filmeService.listar();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Filme> buscarPorId(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(filmeService.buscarPorId(id));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<Filme> criar(@Valid @RequestBody Filme filme) {
+        Filme filmeSalvo = filmeService.salvar(filme);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(filmeSalvo.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(filmeSalvo);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Filme> atualizar(@PathVariable Long id, @Valid @RequestBody Filme filme) {
+        try {
+            Filme filmeAtualizado = filmeService.atualizar(id, filme);
+            return ResponseEntity.ok(filmeAtualizado);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        try {
+            filmeService.excluir(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
