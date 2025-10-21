@@ -20,7 +20,7 @@ public class FilmeService {
     public List<Filme> listar() {
         log.info("Buscando todos os filmes cadastrados");
         try {
-            List<Filme> filmes = filmeRepository.findAll();
+            List<Filme> filmes = filmeRepository.listarFilmesEmOrdemAlfabetica();
             log.debug("Total de filmes encontrados: {}", filmes.size());
             return filmes;
         } catch (Exception e) {
