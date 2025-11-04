@@ -1,10 +1,9 @@
 package br.uniesp.si.techback.service;
 
 import br.uniesp.si.techback.dto.ViaCepResponse;
-import br.uniesp.si.techback.exception.CepNaoEncontradoException;
 import br.uniesp.si.techback.exception.CepInvalidoException;
+import br.uniesp.si.techback.exception.CepNaoEncontradoException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
