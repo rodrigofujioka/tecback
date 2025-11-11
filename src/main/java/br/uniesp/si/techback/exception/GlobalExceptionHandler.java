@@ -48,12 +48,16 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
 
+        // Obtém a primeira mensagem de erro para o campo 'message'
+        String primeiraMensagem = !errors.isEmpty() ? 
+            errors.values().iterator().next() : "Erro de validação nos dados fornecidos";
+
         // Cria um objeto ErrorDetails com os dados do erro
         ErrorDetails errorDetails = new ErrorDetails(
                 LocalDateTime.now(),        // Timestamp do erro
-                "Erro de validação",       // Título do erro
+                primeiraMensagem,          // Primeira mensagem de erro
                 request.getDescription(false), // Descrição da requisição
-                errors                      // Mapa de erros de validação
+                errors                     // Mapa de erros de validação
         );
 
         // Retorna a resposta com status 400 (BAD_REQUEST) e o corpo contendo os detalhes do erro

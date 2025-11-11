@@ -1,6 +1,8 @@
 package br.uniesp.si.techback.model;
 
+import br.uniesp.si.techback.validation.TitulosBloqueadosFilme;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,9 @@ public class Filme {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O título é obrigatório")
     @Column(nullable = false, length = 100)
+    @TitulosBloqueadosFilme
     private String titulo;
 
     @Column(columnDefinition = "TEXT")
