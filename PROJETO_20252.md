@@ -127,10 +127,14 @@
 - Consultas JPQL implementadas.
 - Lombok aplicado em todas as entidades.
 - Erros padronizados + logs implementados.
+- Integração com serviços externos 
+
+### 8.1) Extras
+- Implementações extras podem ter um ponto extra a depender do que for, combinar com o professor antes.
 
 ---
 
-## 9) Atividades guiadas ( Algumas dessas atividades podem não ser realizadas em sala de auala)
+## 9) Atividades guiadas ( Algumas dessas atividades podem não ser realizadas em sala de aula)
 - A1: Criar banco (DDL via Flyway).
 - A2: Implementar entidades com Lombok + validações.
 - A3: Criar APIs REST de `conteudo` com filtros + ordenação.

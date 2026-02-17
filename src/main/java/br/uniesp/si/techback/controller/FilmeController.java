@@ -86,4 +86,70 @@ public class FilmeController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/buscar-por-titulo")
+    public ResponseEntity<List<Filme>> buscarPorTitulo(@RequestParam String titulo) {
+        log.info("Buscando filmes com título contendo: {}", titulo);
+        List<Filme> filmes = filmeService.buscarPorTitulo(titulo);
+        log.debug("Encontrados {} filmes com título contendo '{}'", filmes.size(), titulo);
+        return ResponseEntity.ok(filmes);
+    }
+
+    @GetMapping("/buscar-por-genero")
+    public ResponseEntity<List<Filme>> buscarPorGenero(@RequestParam String genero) {
+        log.info("Buscando filmes do gênero: {}", genero);
+        List<Filme> filmes = filmeService.buscarPorGenero(genero);
+        log.debug("Encontrados {} filmes do gênero '{}'", filmes.size(), genero);
+        return ResponseEntity.ok(filmes);
+    }
+
+    @GetMapping("/buscar-por-classificacao")
+    public ResponseEntity<List<Filme>> buscarPorClassificacao(@RequestParam String classificacao) {
+        log.info("Buscando filmes com classificação: {}", classificacao);
+        List<Filme> filmes = filmeService.buscarPorClassificacao(classificacao);
+        log.debug("Encontrados {} filmes com classificação '{}'", filmes.size(), classificacao);
+        return ResponseEntity.ok(filmes);
+    }
+
+    @GetMapping("/buscar-por-duracao-minima")
+    public ResponseEntity<List<Filme>> buscarPorDuracaoMinima(@RequestParam int duracaoMinima) {
+        log.info("Buscando filmes com duração mínima de {} minutos", duracaoMinima);
+        List<Filme> filmes = filmeService.buscarPorDuracaoMinima(duracaoMinima);
+        log.debug("Encontrados {} filmes com duração mínima de {} minutos", filmes.size(), duracaoMinima);
+        return ResponseEntity.ok(filmes);
+    }
+
+    @GetMapping("/buscar-por-intervalo-data")
+    public ResponseEntity<List<Filme>> buscarPorIntervaloDataLancamento(
+            @RequestParam String dataInicio, 
+            @RequestParam String dataFim) {
+        log.info("Buscando filmes lançados entre {} e {}", dataInicio, dataFim);
+        List<Filme> filmes = filmeService.buscarPorIntervaloDataLancamento(dataInicio, dataFim);
+        log.debug("Encontrados {} filmes no período especificado", filmes.size());
+        return ResponseEntity.ok(filmes);
+    }
+
+    @GetMapping("/buscar-por-palavra-chave")
+    public ResponseEntity<List<Filme>> buscarPorPalavraChaveNaSinopse(@RequestParam String palavraChave) {
+        log.info("Buscando filmes com a palavra-chave '{}' na sinopse", palavraChave);
+        List<Filme> filmes = filmeService.buscarPorPalavraChaveNaSinopse(palavraChave);
+        log.debug("Encontrados {} filmes com a palavra-chave '{}' na sinopse", filmes.size(), palavraChave);
+        return ResponseEntity.ok(filmes);
+    }
+
+    @GetMapping("/contar-por-genero")
+    public ResponseEntity<List<Object[]>> contarFilmesPorGenero() {
+        log.info("Contando filmes por gênero");
+        List<Object[]> contagem = filmeService.contarFilmesPorGenero();
+        log.debug("Encontrados {} gêneros diferentes", contagem.size());
+        return ResponseEntity.ok(contagem);
+    }
+
+    @GetMapping("/ordenados-por-data-lancamento")
+    public ResponseEntity<List<Filme>> buscarTodosOrdenadosPorDataLancamento() {
+        log.info("Buscando todos os filmes ordenados por data de lançamento");
+        List<Filme> filmes = filmeService.buscarTodosOrdenadosPorDataLancamento();
+        log.debug("Encontrados {} filmes", filmes.size());
+        return ResponseEntity.ok(filmes);
+    }
 }
