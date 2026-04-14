@@ -26,6 +26,11 @@ public class FuncionarioService {
         return repository.findAll();
     }
 
+    public Funcionario buscarPorId(Long id) {
+        return repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario inexistente"));
+    }
+
     public Funcionario atualizar(Long id, Funcionario funcionario) {
         if (!repository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario inexistente");

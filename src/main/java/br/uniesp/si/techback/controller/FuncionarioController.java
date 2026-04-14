@@ -34,6 +34,11 @@ public class FuncionarioController {
         return service.listarTodos();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Funcionario> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
     @PutMapping("/{id}")
     public Funcionario atualizar(@PathVariable Long id, @RequestBody Funcionario funcionario){
         return service.atualizar(id, funcionario);
