@@ -1,6 +1,7 @@
 package br.uniesp.si.techback.controller;
 
 import br.uniesp.si.techback.dto.FilmeDTO;
+import br.uniesp.si.techback.model.Filme;
 import br.uniesp.si.techback.service.FilmeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,12 @@ import java.util.List;
 public class FilmeController {
 
     private final FilmeService filmeService;
+
+    @GetMapping("/ordenado")
+    public List<Filme> listarOrdenado() {
+        log.info("Listando todos os filmes");
+        return filmeService.listarOrdenado();
+    }
 
     @GetMapping
     public List<FilmeDTO> listar() {

@@ -20,6 +20,10 @@ public class FilmeService {
     private final FilmeRepository filmeRepository;
     private final FilmeMapper filmeMapper;
 
+    public List<Filme> listarOrdenado() {
+        return filmeRepository.listarFilmesOrdenados();
+    }
+
     public List<FilmeDTO> listar() {
         log.info("Buscando todos os filmes cadastrados");
         try {
