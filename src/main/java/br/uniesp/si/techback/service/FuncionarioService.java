@@ -7,12 +7,18 @@ import br.uniesp.si.techback.repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
     private final ViaCepClient viaCepClient;
+
+    public List<Funcionario> listar() {
+        return funcionarioRepository.findAll();
+    }
 
     public Funcionario incluir(Funcionario funcionario) {
         if (funcionario.getCep() != null && !funcionario.getCep().isBlank()) {
