@@ -9,7 +9,7 @@ export function AppShell({ children }: AppShellProps) {
     <div className="app-shell">
       <header className="hero-panel">
         <div>
-          <p className="hero-panel__eyebrow">Backend + Frontend para a turma</p>
+          <p className="hero-panel__eyebrow">Descrição do projeto para turma</p>
           <h1>IESPFLIX | Portal do Projeto Web</h1>
           <p className="hero-panel__summary">
             Página para auxiliar quem nunca olhou o repositório da disciplina, o projeto esta rganizado para apresentar requisitos, planejar entregas e evoluir o
