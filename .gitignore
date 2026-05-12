@@ -35,6 +35,13 @@ build/
 ### Logs ###
 *.log
 
+### Frontend React + Vite ###
+app/node_modules/
+app/dist/
+app/.vite/
+app/coverage/
+app/*.tsbuildinfo
+
 ### Database ###
 *.db
 *.mv.db

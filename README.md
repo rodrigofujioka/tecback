@@ -14,6 +14,17 @@ Projeto Spring Boot desenvolvido como parte da disciplina de Backend 1 da Uniesp
 - **Mockito** - Framework para mocks em testes
 - **JaCoCo** - Análise de cobertura de testes
 
+## 🌐 Frontend Web (React + Vite)
+
+O projeto agora também possui uma aplicação web em `app/`, usada para a turma apresentar o andamento da implementação:
+
+- tema normal/dark com seleção manual;
+- aba de sugestões baseada em `PROJETO_20261.md`;
+- consumo do backend via proxy (`/backend` -> `http://localhost:8080`);
+- formulário para registrar dados da equipe e checklist de entrega.
+
+Detalhes do frontend: `app/README.md`
+
 ## 📁 Estrutura do Projeto
 
 ```
@@ -128,6 +139,20 @@ mvn spring-boot:run
 ```
 
 A aplicação estará disponível em: `http://localhost:8080`
+
+### Rodando backend + frontend juntos
+
+```bash
+# terminal 1 (backend)
+mvn spring-boot:run
+
+# terminal 2 (frontend)
+cd app
+npm install
+npm run dev
+```
+
+Frontend disponível em: `http://localhost:5173`
 
 ### Documentação da API
 
