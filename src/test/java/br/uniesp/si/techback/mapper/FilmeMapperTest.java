@@ -5,6 +5,7 @@ import br.uniesp.si.techback.model.Filme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 
@@ -20,7 +21,7 @@ class FilmeMapperTest {
 
     @BeforeEach
     void setUp() {
-        filmeMapper = new FilmeMapper();
+        filmeMapper = new FilmeMapper(new ModelMapper());
 
         filme = Filme.builder()
                 .id(1L)
