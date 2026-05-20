@@ -1,5 +1,6 @@
 package br.uniesp.si.techback.model;
 
+import br.uniesp.si.techback.validation.Genero;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class Filme {
     private LocalDate dataLancamento;
 
     @Column(length = 50)
+    @Genero
     private String genero;
 
     @Column(name = "duracao_minutos")
